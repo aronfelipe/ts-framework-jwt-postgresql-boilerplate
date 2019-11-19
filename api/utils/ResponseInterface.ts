@@ -1,4 +1,4 @@
-export interface ResponseInterface {
-    token: string,
+export default interface ResponseInterface {
+    token: {token: string, expiresIn: number},
     data: any
 }

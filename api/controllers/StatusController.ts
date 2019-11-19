@@ -1,6 +1,6 @@
 import * as Package from 'pjson';
 import { Controller, Get, BaseRequest, BaseResponse } from 'ts-framework';
-import UptimeService from '../services/UptimeService';
+import { UptimeService } from '../services';
 
 @Controller('/')
 export default class StatusController {

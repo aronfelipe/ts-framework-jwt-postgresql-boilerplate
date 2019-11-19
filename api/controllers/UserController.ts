@@ -3,7 +3,7 @@ import { UserModel } from '../models';
 import { getRepository } from 'typeorm';
 import { checkJwt } from '../middlewares/checkJwt';
 import { checkRole } from '../middlewares/checkRole';
-import { ResponseInterface } from '../utils/ResponseInterface'
+import { ResponseInterface } from '../utils';
 
 @Controller('/user')
 export default class UserController {
@@ -22,7 +22,8 @@ export default class UserController {
       const users = await userRepository.find();
 
       const response = <ResponseInterface> {
-        token: res.locals.token,
+        token: {token:res.locals.token.token,
+          expiresIn: res.locals.token.expiresIn},
         data: users
       }
 
@@ -47,7 +48,8 @@ export default class UserController {
       const userdb = await userRepository.findOne(req.param('id'))
 
       const response = <ResponseInterface> {
-        token: res.locals.token,
+        token: {token:res.locals.token.token,
+          expiresIn: res.locals.token.expiresIn},
         data: userdb
       }
 
@@ -88,7 +90,8 @@ export default class UserController {
       await user.save();
 
       const response = <ResponseInterface> {
-        token: res.locals.token,
+        token: {token:res.locals.token.token,
+          expiresIn: res.locals.token.expiresIn},
         data: user
       }
 

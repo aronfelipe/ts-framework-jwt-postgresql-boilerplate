@@ -4,11 +4,11 @@ import * as jwt from 'jsonwebtoken';
 import { JwtConfig } from "../../config";
 import { getRepository } from "typeorm";
 import { UserModel } from "../models";
-import JwtService from "../services/JwtService";
+import { JwtService } from "../services";
 
 export const checkJwt = async (req: BaseRequest, res: BaseResponse, next: NextFunction) => {
 
-    const token = req.body.token;
+    const token = req.headers['token'];
     let userId;
 
     try {

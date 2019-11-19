@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { ExtendedEntity } from './base';
 import * as bcrypt from 'bcryptjs';
 

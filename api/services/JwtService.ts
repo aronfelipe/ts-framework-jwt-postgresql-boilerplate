@@ -2,7 +2,6 @@ import { BaseError, Service, ServiceOptions } from 'ts-framework-common';
 import { UserModel } from '../models';
 import { JwtConfig } from '../../config';
 import * as jwt from 'jsonwebtoken';
-import { HttpError, HttpCode } from 'ts-framework';
 
 export interface JwtServiceOptions extends ServiceOptions {
 }

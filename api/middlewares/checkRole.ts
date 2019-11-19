@@ -7,7 +7,7 @@ import { UserModel } from "../models";
 
 export const checkRole = async (req: BaseRequest, res: BaseResponse, next: NextFunction) => {
 
-    const token = req.body.token;
+    const token = req.headers['token'];
     let userId;
 
     try {

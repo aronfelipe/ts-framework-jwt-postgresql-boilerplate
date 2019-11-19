@@ -1,7 +1,8 @@
 import { Controller, Get, BaseRequest, BaseResponse, HttpError, HttpCode, Post } from 'ts-framework';
 import { getRepository } from 'typeorm';
 import { UserModel } from '../models';
-import JwtService from '../services/JwtService';
+import { JwtService } from '../services';
+import { ResponseInterface } from '../utils';
 
 @Controller('/auth')
 export default class AuthController {
@@ -34,8 +35,15 @@ export default class AuthController {
       }
 
       if (matchPassword) {
+
         const token = await JwtService.createSignToken(userdb);
-        return res.success(token);
+
+        const response = <ResponseInterface> {
+          token: {token:token.token, expiresIn: token.expiresIn},
+          data: []
+        }
+        
+        return res.success(response);
       }
     
     } catch (error) {
@@ -44,7 +52,7 @@ export default class AuthController {
   }
 
     /**
-   * POST /auth/login
+   * POST /auth/register
    * 
    * @description Register on the platform.
    */
